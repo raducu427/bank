@@ -31,9 +31,6 @@ startingServices :: Vector Double -> Vector Double -> Vector Double
 startingServices arrivalTimes serviceTimes = 
   V.prescanl' (\ss (at, st) -> uncurry max (at, ss + st)) 0 $ V.zip (V.tail arrivalTimes) serviceTimes
 
-finishingTimes :: Vector Double -> Vector Double -> Vector Double  -- startingService + serviceTime
-finishingTimes = V.zipWith (+) 
-
 isWaitings :: Vector Double -> Vector Double -> Vector Bool  -- arrivalTime == startingService?
 isWaitings = V.zipWith (==)
 
